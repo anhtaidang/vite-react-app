@@ -1,0 +1,6 @@
+build/*
+public/*
+src/assets/*
+node_modules/*
+*.css
+*.svg
