@@ -6,10 +6,11 @@ import {
   UserOutlined,
   VideoCameraOutlined,
 } from "@ant-design/icons";
-import { Layout, Menu, theme } from "antd";
+import { Col, Layout, Menu, Row, theme } from "antd";
 import "./styles.scss";
 
 const { Header, Sider, Content } = Layout;
+const MIN_HEIGHT = 200;
 
 const CMSContainer: React.FC = () => {
   const [collapsed, setCollapsed] = useState(false);
@@ -79,26 +80,102 @@ const CMSContainer: React.FC = () => {
             }
           )}
         </Header>
-        <Content
-          style={{
-            margin: "24px 16px",
-            padding: 24,
-            minHeight: 280,
-            background: colorBgContainer,
-          }}
-        >
-          Content
-        </Content>
-        <Content
-          style={{
-            margin: "24px 16px",
-            padding: 24,
-            minHeight: 280,
-            background: colorBgContainer,
-          }}
-        >
-          Content
-        </Content>
+        <Row gutter={12}>
+          <Col span={12}>
+            <Content
+              style={{
+                padding: 24,
+                minHeight: MIN_HEIGHT,
+                background: colorBgContainer,
+              }}
+            >
+              Content
+            </Content>
+          </Col>
+          <Col span={12}>
+            <Content
+              style={{
+                padding: 24,
+                minHeight: MIN_HEIGHT,
+                background: colorBgContainer,
+              }}
+            >
+              Content
+            </Content>
+          </Col>
+        </Row>
+        <Row>
+          <Col span={24}>
+            <Content
+              style={{
+                padding: 24,
+                minHeight: MIN_HEIGHT,
+                background: colorBgContainer,
+              }}
+            >
+              Content
+            </Content>
+          </Col>
+        </Row>
+        <Row gutter={12}>
+          <Col span={8}>
+            <Content
+              style={{
+                padding: 24,
+                minHeight: MIN_HEIGHT,
+                background: colorBgContainer,
+              }}
+            >
+              Content
+            </Content>
+          </Col>
+          <Col span={8}>
+            <Content
+              style={{
+                padding: 24,
+                minHeight: MIN_HEIGHT,
+                background: colorBgContainer,
+              }}
+            >
+              Content
+            </Content>
+          </Col>
+          <Col span={8}>
+            <Content
+              style={{
+                padding: 24,
+                minHeight: MIN_HEIGHT,
+                background: colorBgContainer,
+              }}
+            >
+              Content
+            </Content>
+          </Col>
+        </Row>
+        <Row gutter={12}>
+          <Col span={12}>
+            <Content
+              style={{
+                padding: 24,
+                minHeight: MIN_HEIGHT,
+                background: colorBgContainer,
+              }}
+            >
+              Content
+            </Content>
+          </Col>
+          <Col span={12}>
+            <Content
+              style={{
+                padding: 24,
+                minHeight: MIN_HEIGHT,
+                background: colorBgContainer,
+              }}
+            >
+              Content
+            </Content>
+          </Col>
+        </Row>
       </Layout>
     </Layout>
   );
