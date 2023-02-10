@@ -1,14 +1,17 @@
 #MAIN_LAYOUT {
   .site-layout {
     overflow: auto;
+    padding-top: 80px !important;
   }
   .ant-layout-header {
     position: fixed;
     width: 100%;
+    top: 0;
+
   }
   .ant-layout-content {
-    margin-top: 80px !important;
     flex: 0;
+    margin-top: 0 !important;
   }
   .logo {
     height: 32px;

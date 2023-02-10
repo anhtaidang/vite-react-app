@@ -30,20 +30,22 @@ const CMSContainer: React.FC = () => {
         bottom: 0,
       }}
     >
-      <Sider
-        trigger={null}
-        collapsible
-        collapsed={collapsed}
-        // style={{
-        //   overflow: "auto",
-        //   height: "100vh",
-        //   position: "fixed",
-        //   left: 0,
-        //   top: 0,
-        //   bottom: 0,
-        // }}
-      >
-        <div className="logo" />
+      <Sider trigger={null} collapsible collapsed={collapsed}>
+        <div className="logo">
+          <span
+            style={{
+              width: "100%",
+              justifyContent: "center",
+              display: "flex",
+              alignItems: "center",
+              height: "100%",
+              color: "white",
+              fontWeight: 600,
+            }}
+          >
+            VieON
+          </span>
+        </div>
         <Menu
           theme="dark"
           mode="inline"
@@ -85,7 +87,17 @@ const CMSContainer: React.FC = () => {
             background: colorBgContainer,
           }}
         >
-          xxx
+          Content
+        </Content>
+        <Content
+          style={{
+            margin: "24px 16px",
+            padding: 24,
+            minHeight: 280,
+            background: colorBgContainer,
+          }}
+        >
+          Content
         </Content>
       </Layout>
     </Layout>
