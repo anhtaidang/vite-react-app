@@ -1,12 +1,18 @@
 import React from "react";
-import { Route } from "react-router";
-import { RouteProps } from "react-router/dist/lib/components";
 import withCMSLayout from "~/layouts/CMSLayout";
 
-interface Props {}
+interface Props {
+  children: JSX.Element;
+}
 
-const CMSRoute: React.FC<Props & RouteProps> = withCMSLayout(({ ...rest }) => {
-  return <Route {...rest} />;
-});
+const CMSRoute = React.memo(
+  withCMSLayout(({ children }: Props) => {
+    return (
+      <React.Suspense fallback={<div>loading...</div>}>
+        {children}
+      </React.Suspense>
+    );
+  })
+);
 
 export default CMSRoute;

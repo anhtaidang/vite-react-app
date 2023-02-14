@@ -47,10 +47,12 @@ module.exports = {
     ],
 
     // TypeScript
-    "@typescript-eslint/no-unused-vars": ["warn", { argsIgnorePattern: "^_" }],
+    // "@typescript-eslint/no-unused-vars": ["warn", { argsIgnorePattern: "^_" }],
+    "@typescript-eslint/no-unused-vars": "off",
     "@typescript-eslint/explicit-module-boundary-types": 0,
     "@typescript-eslint/ban-types": "off",
     "@typescript-eslint/no-empty-interface": "off",
+    "@typescript-eslint/no-explicit-any": "off",
 
     // React
     "react/display-name": 0,
@@ -62,9 +64,9 @@ module.exports = {
 
     // No-XXX
     "no-shadow": "off",
-    "no-use-before-define": "off",
+    "no-use-before-defne": "off",
     "no-debugger": "off",
-    "no-unused-vars": ["warn"],
+    "no-unused-vars": "off",
 
     // Import
     // "import/extensions": "off",

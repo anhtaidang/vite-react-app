@@ -1,7 +1,8 @@
 import React from "react";
 import { TagOutlined, PushpinOutlined } from "@ant-design/icons";
 import { PageGroupType, PageType } from "~/types/route";
-import Page from "../containers/CMS/components/Page";
+
+const Page = React.lazy(() => import("../containers/CMS/components/Page"));
 
 export enum GroupRoute {
   SystemManagement = "system-management",

@@ -5,15 +5,16 @@ import Page from "../CMS/components/Page";
 import styles from "./styles.module.scss";
 
 const HomeContainer = withDefaultLayout(() => {
-  const title = "";
   return (
-    <Routes>
-      <Route path="/">
-        <Route index element={<Page value="Home" />} />
-        <Route path="a" element={<Page value="A" />} />
-        <Route path="b" element={<Page value="B" />} />
-      </Route>
-    </Routes>
+    <div className={styles.homeContainer}>
+      <Routes>
+        <Route path="/">
+          <Route index element={<Page value="Home" />} />
+          <Route path="a" element={<Page value="A" />} />
+          <Route path="b" element={<Page value="B" />} />
+        </Route>
+      </Routes>
+    </div>
   );
 });
 
