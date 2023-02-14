@@ -34,6 +34,8 @@ module.exports = {
     "plugin:prettier/recommended", // Enables eslint-plugin-prettier and eslint-config-prettier.
     "plugin:react/recommended", // Uses the recommended rules from @eslint-plugin-react
     "plugin:@typescript-eslint/recommended",
+    "plugin:import/errors",
+    "plugin:import/warnings",
   ],
   plugins: ["@typescript-eslint", "react-hooks", "react", "import", "prettier"],
   rules: {
@@ -48,20 +50,23 @@ module.exports = {
     "@typescript-eslint/no-unused-vars": ["warn", { argsIgnorePattern: "^_" }],
     "@typescript-eslint/explicit-module-boundary-types": 0,
     "@typescript-eslint/ban-types": "off",
+
     // React
     "react/display-name": 0,
     "react/jsx-filename-extension": ["warn", { extensions: [".tsx"] }],
     "react/require-default-props": "off",
     "react/no-unused-prop-types": "off",
+    "react/react-in-jsx-scope": "off",
 
+    // No-XXX
     "no-shadow": "off",
+    "no-use-before-define": "off",
 
     // Import
     // "import/extensions": "off",
     "import/prefer-default-export": 0,
 
-    "no-use-before-define": "off",
+    // Other
     "jsx-a11y/anchor-is-valid": "off",
-    "react/react-in-jsx-scope": "off",
   },
 };

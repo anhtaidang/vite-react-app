@@ -1,7 +1,7 @@
 import React from "react";
 import { TagOutlined, PushpinOutlined } from "@ant-design/icons";
 import { PageGroupType, PageType } from "../types/route";
-import Page from "../containers/Page";
+import Page from "../containers/CMS/components/Page";
 
 export enum GroupRoute {
   SystemManagement = "system-management",
@@ -30,14 +30,14 @@ export const SideRoutesMap: Array<PageGroupType> = [
       {
         title: "Table Page",
         icon: <TagOutlined />,
-        Component: <Page value="Table Page" />,
+        Component: <Page value="Table Index" />,
         path: ROUTES.TABLE_PAGE,
         display: true,
       },
       {
         title: "Chart Page",
         icon: <TagOutlined />,
-        Component: <Page value="Chart Page" />,
+        Component: <Page value="Chart Index" />,
         path: ROUTES.CHART_PAGE,
         display: true,
       },

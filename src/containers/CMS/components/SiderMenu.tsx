@@ -2,7 +2,7 @@ import React from "react";
 import { Menu, MenuProps } from "antd";
 import Sider from "antd/es/layout/Sider";
 import { Link } from "react-router-dom";
-import { GroupRoute, SideRoutesMap } from "../../../constants/routes";
+import { GroupRoute, SideRoutesMap } from "~/constants/routes";
 
 type MenuItem = Required<MenuProps>["items"][number];
 
@@ -24,16 +24,16 @@ interface Props {
 
 const SiderMenu: React.FC<Props> = ({ collapsed }) => {
   const sideMenuItems = React.useMemo(() => {
-    return SideRoutesMap.map((item, indexGroup) => {
+    return SideRoutesMap.map((item) => {
       return getItem({
         icon: item.icon,
-        key: `${item.root}-${indexGroup}`,
+        key: item.root,
         label: <Link to="">{item.title}</Link>,
         children: item.subPages
           ?.filter((f) => f.display)
-          .map((sub, indexSub) =>
+          .map((sub) =>
             getItem({
-              key: `${item.root}-${sub.path}-${indexSub}`,
+              key: `${item.root}-${sub.path}`,
               label: <Link to={sub.path}>{sub.title}</Link>,
               icon: sub.icon,
             })
