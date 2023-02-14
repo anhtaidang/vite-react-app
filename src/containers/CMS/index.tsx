@@ -1,22 +1,19 @@
 import React, { useState } from "react";
-import {
-  MenuFoldOutlined,
-  MenuUnfoldOutlined,
-  UploadOutlined,
-  UserOutlined,
-  VideoCameraOutlined,
-} from "@ant-design/icons";
-import { Col, Layout, Menu, Row, theme } from "antd";
+import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
+import { Layout, theme } from "antd";
+import SiderMenu from "./components/SiderMenu";
+import ContentContainer from "./components/ContentContainer";
 import "./styles.scss";
 
-const { Header, Sider, Content } = Layout;
-const MIN_HEIGHT = 200;
+const { Header } = Layout;
 
 const CMSContainer: React.FC = () => {
   const [collapsed, setCollapsed] = useState(false);
   const {
     token: { colorBgContainer },
   } = theme.useToken();
+
+  const toggleCollapsed = () => setCollapsed((prev) => !prev);
 
   return (
     <Layout
@@ -31,151 +28,20 @@ const CMSContainer: React.FC = () => {
         bottom: 0,
       }}
     >
-      <Sider trigger={null} collapsible collapsed={collapsed}>
-        <div className="logo">
-          <span
-            style={{
-              width: "100%",
-              justifyContent: "center",
-              display: "flex",
-              alignItems: "center",
-              height: "100%",
-              color: "white",
-              fontWeight: 600,
-            }}
-          >
-            VieON
-          </span>
-        </div>
-        <Menu
-          theme="dark"
-          mode="inline"
-          defaultSelectedKeys={["1"]}
-          items={[
-            {
-              key: "1",
-              icon: <UserOutlined />,
-              label: "nav 1",
-            },
-            {
-              key: "2",
-              icon: <VideoCameraOutlined />,
-              label: "nav 2",
-            },
-            {
-              key: "3",
-              icon: <UploadOutlined />,
-              label: "nav 3",
-            },
-          ]}
-        />
-      </Sider>
-      <Layout className="site-layout">
+      <SiderMenu collapsed={collapsed} />
+      <Layout>
         <Header style={{ padding: 0, background: colorBgContainer }}>
           {React.createElement(
             collapsed ? MenuUnfoldOutlined : MenuFoldOutlined,
             {
               className: "trigger",
-              onClick: () => setCollapsed(!collapsed),
+              onClick: toggleCollapsed,
             }
           )}
         </Header>
-        <Row gutter={12}>
-          <Col span={12}>
-            <Content
-              style={{
-                padding: 24,
-                minHeight: MIN_HEIGHT,
-                background: colorBgContainer,
-              }}
-            >
-              Content
-            </Content>
-          </Col>
-          <Col span={12}>
-            <Content
-              style={{
-                padding: 24,
-                minHeight: MIN_HEIGHT,
-                background: colorBgContainer,
-              }}
-            >
-              Content
-            </Content>
-          </Col>
-        </Row>
-        <Row>
-          <Col span={24}>
-            <Content
-              style={{
-                padding: 24,
-                minHeight: MIN_HEIGHT,
-                background: colorBgContainer,
-              }}
-            >
-              Content
-            </Content>
-          </Col>
-        </Row>
-        <Row gutter={12}>
-          <Col span={8}>
-            <Content
-              style={{
-                padding: 24,
-                minHeight: MIN_HEIGHT,
-                background: colorBgContainer,
-              }}
-            >
-              Content
-            </Content>
-          </Col>
-          <Col span={8}>
-            <Content
-              style={{
-                padding: 24,
-                minHeight: MIN_HEIGHT,
-                background: colorBgContainer,
-              }}
-            >
-              Content
-            </Content>
-          </Col>
-          <Col span={8}>
-            <Content
-              style={{
-                padding: 24,
-                minHeight: MIN_HEIGHT,
-                background: colorBgContainer,
-              }}
-            >
-              Content
-            </Content>
-          </Col>
-        </Row>
-        <Row gutter={12}>
-          <Col span={12}>
-            <Content
-              style={{
-                padding: 24,
-                minHeight: MIN_HEIGHT,
-                background: colorBgContainer,
-              }}
-            >
-              Content
-            </Content>
-          </Col>
-          <Col span={12}>
-            <Content
-              style={{
-                padding: 24,
-                minHeight: MIN_HEIGHT,
-                background: colorBgContainer,
-              }}
-            >
-              Content
-            </Content>
-          </Col>
-        </Row>
+        <Layout className="site-layout-container">
+          <ContentContainer colorBgContainer={colorBgContainer} />
+        </Layout>
       </Layout>
     </Layout>
   );

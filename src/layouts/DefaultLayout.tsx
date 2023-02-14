@@ -17,7 +17,7 @@ const DefaultLayout = React.memo(
         </div>
         <h1>Vite + React</h1>
         <div className="card">
-          <button onClick={() => setCount((count) => count + 1)}>
+          <button onClick={() => setCount((prev) => prev + 1)}>
             count is {count}
           </button>
         </div>
@@ -27,7 +27,7 @@ const DefaultLayout = React.memo(
   }
 );
 
-const withDefaultLayout = <T extends Record<string, unknown>>(
+const withDefaultLayout = <T extends object>(
   WrappedComponent: React.ComponentType<T> | React.FC<T>
 ) => {
   const ComponentRender = (props: T) => {

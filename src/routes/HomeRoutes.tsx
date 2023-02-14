@@ -1,8 +1,9 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
-import Page from "../containers/Page";
+import Page from "~/containers/Page";
 
 const HomeRoutes = () => {
+  const title = "";
   return (
     <Routes>
       <Route path="/">

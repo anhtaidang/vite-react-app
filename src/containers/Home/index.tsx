@@ -1,7 +1,7 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
-
 import withDefaultLayout from "../../layouts/DefaultLayout";
+
 import Page from "../Page";
 
 const HomePage = withDefaultLayout(() => {

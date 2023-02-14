@@ -1,20 +1,28 @@
 #MAIN_LAYOUT {
-  .site-layout {
-    overflow: auto;
-    padding: 0  16px;
-    padding-top: 80px !important;
-    position: relative;
+  .ant-layout-sider,
+  .ant-layout-header {
+    z-index: 2;
   }
   .ant-layout-header {
-    position: absolute;
-    width: 100%;
-    top: 0;
-    left: 0;
+    box-shadow: 1px 2px 3px #dcdcdc;
+  }
+
+  .site-layout-container {
+    overflow: auto;
+    padding: 16px  16px;
+    position: relative;
+    .full-content  {
+      margin: 0px -22px !important;
+      &.on-top {
+        margin-top: -16px !important;
+      }
+    }
   }
   .ant-layout-content {
     flex: 0;
     margin-top: 0 !important;
     margin-bottom: 16px;
+    padding: 12px 24px 0 24px;
   }
   .logo {
     height: 32px;

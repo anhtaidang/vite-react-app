@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "ESNext",
+    "target": "es5",
     "useDefineForClassFields": true,
     "lib": ["DOM", "DOM.Iterable", "ESNext"],
     "allowJs": true,
@@ -13,14 +13,23 @@
     "moduleResolution": "Node",
     "resolveJsonModule": true,
     "isolatedModules": true,
+    "declaration": true,
     "noEmit": true,
-    "jsx": "react-jsx",
-    "baseUrl": "./src",
+    "jsx": "react",
+    "types": ["vite/client"],
+    "baseUrl": ".",
     "paths": {
-      "@/*": ["src/*"]
-    },
+      "~/*": ["src/*"]
+    }
   },
-  "include": ["src"],
-  "exclude": ["src/assets", "node_modules"],
-  "references": [{ "path": "./tsconfig.node.json" }]
+  "include": [
+    "vite.config.ts",
+    ".eslintrc.js",
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "src/**/*.js",
+    "src/**/*.jsx"
+  ],
+  "exclude": ["node_modules", "public"],
+//  "references": [{ "path": "./tsconfig.node.json" }]
 }
