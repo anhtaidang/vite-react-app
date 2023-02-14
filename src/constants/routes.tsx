@@ -1,6 +1,6 @@
 import React from "react";
 import { TagOutlined, PushpinOutlined } from "@ant-design/icons";
-import { PageGroupType, PageType } from "../types/route";
+import { PageGroupType, PageType } from "~/types/route";
 import Page from "../containers/CMS/components/Page";
 
 export enum GroupRoute {
