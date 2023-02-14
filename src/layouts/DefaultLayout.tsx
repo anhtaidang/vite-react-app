@@ -21,6 +21,10 @@ const DefaultLayout = React.memo(
             count is {count}
           </button>
         </div>
+        <div>
+          <Link to="/">Home</Link> |<Link to="/a">Page A</Link> |
+          <Link to="/b">Page B</Link> |<Link to="/cms">Page CMS</Link> |
+        </div>
         <div>{children}</div>
       </div>
     );
@@ -33,11 +37,7 @@ const withDefaultLayout = <T extends object>(
   const ComponentRender = (props: T) => {
     return (
       <DefaultLayout>
-        <>
-          <Link to="/">Home</Link> |<Link to="/a">Page A</Link> |
-          <Link to="/b">Page B</Link> |<Link to="/cms">Page CMS</Link> |
-          <WrappedComponent {...props} />
-        </>
+        <WrappedComponent {...props} />
       </DefaultLayout>
     );
   };
