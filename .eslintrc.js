@@ -50,6 +50,7 @@ module.exports = {
     "@typescript-eslint/no-unused-vars": ["warn", { argsIgnorePattern: "^_" }],
     "@typescript-eslint/explicit-module-boundary-types": 0,
     "@typescript-eslint/ban-types": "off",
+    "@typescript-eslint/no-empty-interface": "off",
 
     // React
     "react/display-name": 0,
@@ -57,16 +58,20 @@ module.exports = {
     "react/require-default-props": "off",
     "react/no-unused-prop-types": "off",
     "react/react-in-jsx-scope": "off",
+    "react/no-array-index-key": "off",
 
     // No-XXX
     "no-shadow": "off",
     "no-use-before-define": "off",
+    "no-debugger": "off",
+    "no-unused-vars": ["warn"],
 
     // Import
     // "import/extensions": "off",
     "import/prefer-default-export": 0,
 
     // Other
+    "spaced-comment": "off",
     "jsx-a11y/anchor-is-valid": "off",
   },
 };

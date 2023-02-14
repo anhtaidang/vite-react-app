@@ -7,11 +7,14 @@ export enum GroupRoute {
   SystemManagement = "system-management",
 }
 
+const CMS_ROUTE = "/cms";
+
 export const ROUTES = {
-  ADMIN_DASHBOARD_PAGE: "/",
-  USER_LOGIN: "/user/login",
-  TABLE_PAGE: "/system-management/table-page",
-  CHART_PAGE: "/system-management/chart-page",
+  CMS: CMS_ROUTE,
+  ADMIN_DASHBOARD_PAGE: CMS_ROUTE,
+  USER_LOGIN: `${CMS_ROUTE}/user/login`,
+  TABLE_PAGE: `${CMS_ROUTE}/${GroupRoute.SystemManagement}/table-page`,
+  CHART_PAGE: `${CMS_ROUTE}/${GroupRoute.SystemManagement}/chart-page`,
 };
 
 export const SideRoutesMap: Array<PageGroupType> = [
@@ -23,21 +26,21 @@ export const SideRoutesMap: Array<PageGroupType> = [
       {
         title: "Home Page",
         icon: <TagOutlined />,
-        Component: () => <div>xxxx</div>,
+        Component: Page,
         path: ROUTES.ADMIN_DASHBOARD_PAGE,
         display: false,
       },
       {
         title: "Table Page",
         icon: <TagOutlined />,
-        Component: <Page value="Table Index" />,
+        Component: Page,
         path: ROUTES.TABLE_PAGE,
         display: true,
       },
       {
         title: "Chart Page",
         icon: <TagOutlined />,
-        Component: <Page value="Chart Index" />,
+        Component: Page,
         path: ROUTES.CHART_PAGE,
         display: true,
       },

@@ -1,13 +1,12 @@
 import React from "react";
-import withDefaultLayout from "~/layouts/DefaultLayout";
 import "./styles.scss";
 
 interface Props {
-  value: string;
+  value?: string;
 }
 
-const Index = withDefaultLayout(({ value }: Props) => {
+const Page: React.FC<Props> = ({ value }) => {
   return <div className="pageContainer">Page {value}</div>;
-});
+};
 
-export default Index;
+export default Page;

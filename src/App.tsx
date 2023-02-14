@@ -1,15 +1,20 @@
 import React from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Routes } from "react-router-dom";
 import HomeContainer from "~/containers/Home";
-import CMSContainer from "~/containers/CMS";
+// import CMSContainer from "~/containers/CMS";
+import { Route } from "react-router";
+import Page from "~/containers/CMS/components/Page";
+import withDefaultLayout from "~/layouts/DefaultLayout";
 import "./styles.scss";
 
 const App = () => {
   return (
     <BrowserRouter>
-      <HomeContainer />
       <Routes>
-        <Route path="cms" element={<CMSContainer />} />
+        <>
+          <HomeContainer />
+        </>
+        {/*<CMSContainer />*/}
       </Routes>
     </BrowserRouter>
   );

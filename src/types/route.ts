@@ -13,7 +13,7 @@ export type PageRouteType = {
 export type PageType = {
   title: string;
   icon?: React.ReactElement;
-  Component: React.ComponentType | JSX.Element;
+  Component: React.ComponentType<any>;
   path: string;
   display: boolean;
   group?: PageGroupType;
