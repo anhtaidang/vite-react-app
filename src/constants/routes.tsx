@@ -1,8 +1,15 @@
 import React from "react";
-import { TagOutlined, PushpinOutlined } from "@ant-design/icons";
+import {
+  TagOutlined,
+  PushpinOutlined,
+  CodeSandboxOutlined,
+} from "@ant-design/icons";
 import { PageGroupType, PageType } from "~/types/route";
 
 const Page = React.lazy(() => import("../containers/CMS/components/Page"));
+const PageBuilder = React.lazy(
+  () => import("../containers/CMS/pages/PageBuilder")
+);
 
 export enum GroupRoute {
   SystemManagement = "system-management",
@@ -16,6 +23,7 @@ export const ROUTES = {
   USER_LOGIN: `${CMS_ROUTE}/user/login`,
   TABLE_PAGE: `${CMS_ROUTE}/${GroupRoute.SystemManagement}/table-page`,
   CHART_PAGE: `${CMS_ROUTE}/${GroupRoute.SystemManagement}/chart-page`,
+  PAGE_BUILDER: `${CMS_ROUTE}/${GroupRoute.SystemManagement}/page-builder`,
 };
 
 export const SideRoutesMap: Array<PageGroupType> = [
@@ -43,6 +51,13 @@ export const SideRoutesMap: Array<PageGroupType> = [
         icon: <TagOutlined />,
         Component: Page,
         path: ROUTES.CHART_PAGE,
+        display: true,
+      },
+      {
+        title: "Page Builder",
+        icon: <CodeSandboxOutlined />,
+        Component: PageBuilder,
+        path: ROUTES.PAGE_BUILDER,
         display: true,
       },
     ],

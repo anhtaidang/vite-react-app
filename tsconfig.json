@@ -27,8 +27,8 @@
     ".eslintrc.js",
     "src/**/*.ts",
     "src/**/*.tsx",
-    "src/**/*.js",
-    "src/**/*.jsx"
+//    "src/**/*.js",
+//    "src/**/*.jsx"
   ],
   "exclude": ["node_modules", "public"],
 //  "references": [{ "path": "./tsconfig.node.json" }]
