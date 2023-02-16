@@ -5,7 +5,7 @@ import { HomeOutlined, UserOutlined } from "@ant-design/icons";
 import Canvas from "~/containers/CMS/pages/PageBuilder/components/Canvas";
 import Palette from "~/containers/CMS/pages/PageBuilder/components/Palette";
 import { EnumElementType } from "~/containers/CMS/pages/PageBuilder/types";
-import "./style.css";
+import "./style.scss";
 
 const MIN_HEIGHT = 190;
 
