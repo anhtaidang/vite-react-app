@@ -2,8 +2,8 @@ import React, { ReactElement, useRef } from "react";
 import DragCore from "../core/DragCore";
 
 interface Props {
-  id: string;
-  name?: string;
+  id: string | null;
+  name?: string | JSX.Element;
   initDone?: boolean;
   index?: number;
   allowHorizontal?: boolean;

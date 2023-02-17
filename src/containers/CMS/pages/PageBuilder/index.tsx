@@ -48,14 +48,22 @@ const PageBuilder = () => {
             }}
           >
             <Row>
-              <Col span={8}>
+              <Col span={24}>
                 <Palette
                   elements={[
                     {
                       // <-- palette elements to be shown
-                      id: "f1", // make sure ID is unique
+                      // id: "f1", // make sure ID is unique
+                      id: null,
                       name: "Input Field",
                       type: EnumElementType.TEXTBOX,
+                    },
+                    {
+                      // <-- palette elements to be shown
+                      // id: "g1", // make sure ID is unique
+                      id: null,
+                      name: "Grid [1 Row - 2 Col]",
+                      type: EnumElementType.LAYOUT_GRID_1_2,
                     },
                   ]}
                 />

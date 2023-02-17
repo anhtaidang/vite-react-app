@@ -4,6 +4,7 @@ import {
   EnumElementType,
 } from "~/containers/CMS/pages/PageBuilder/types";
 import DraggableTextbox from "~/containers/CMS/pages/PageBuilder/components/DraggableTextbox";
+import DragItemLayoutGrid from "~/containers/CMS/pages/PageBuilder/components/DragItemLayoutGrid";
 import DragCore from "../core/DragCore";
 
 interface Props {
@@ -18,12 +19,19 @@ const Palette = ({ elements }: Props) => {
         type: EnumElementType.TEXTBOX, // import from const.js
         component: DraggableTextbox, // import from DraggableTextbox.js
       },
+      {
+        type: EnumElementType.LAYOUT_GRID_1_2, // import from const.js
+        component: DragItemLayoutGrid, // import from DragItemLayoutGrid.js
+      },
     ]);
     setIsReady(true);
   }, []);
 
   const renderElement = (
-    newProps: ElementSchemaType & { key: string; showBasicContent: boolean }
+    newProps: ElementSchemaType & {
+      key: string | null;
+      showBasicContent: boolean;
+    }
   ) => {
     const element = DragCore.getRegisteredPaletteElements().find(
       (e: any) => e.type === newProps.type

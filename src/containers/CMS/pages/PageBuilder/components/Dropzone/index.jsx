@@ -1,6 +1,7 @@
 /* eslint-disable */
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import { v4 as uuidv4 } from "uuid";
 import state from "../../core/state";
 import core from "../../core/DragCore";
 
@@ -281,14 +282,15 @@ class Dropzone extends Component {
     e.preventDefault();
     e.stopPropagation();
     const { droppedElements } = this.state;
-    console.log("droppedElements", droppedElements);
     core.setAttemptToRemove(false);
     this._manageInsideClass(e, "remove");
 
     const { onDrop } = this.props;
     let data = JSON.parse(e.dataTransfer.getData("data"));
-    console.log("droppedElementsdata", data);
     data = { ...data };
+    if (!data.id) {
+      data.id = uuidv4();
+    }
 
     this._unmarkDragElements();
 
@@ -481,6 +483,15 @@ class Dropzone extends Component {
         {!droppedElements.length ? (
           <p className="dropzone-placeholder">{placeholder}</p>
         ) : null}
+        <small
+          style={{
+            position: "absolute",
+            top: 2,
+            left: 5,
+          }}
+        >
+          dropzoneId - {id}
+        </small>
       </div>
     );
   }
