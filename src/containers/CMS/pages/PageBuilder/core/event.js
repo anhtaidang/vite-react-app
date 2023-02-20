@@ -1,5 +1,5 @@
 import DragCore from "./DragCore";
-import state from "./state";
+import StateCore from "./StateCore";
 
 // dont want any conflicts with JS Event and CustomEvent Object hence keeping name as RpmEvent
 class RpmEvent {
@@ -16,7 +16,7 @@ class RpmEvent {
   // private function to trigger all change CB
   notifyStateChange = () => {
     // trigger all events
-    this.event.change.forEach((e) => e(state.getState()));
+    this.event.change.forEach((e) => e(StateCore.getState()));
   };
 
   // private function to trigger all flush CB

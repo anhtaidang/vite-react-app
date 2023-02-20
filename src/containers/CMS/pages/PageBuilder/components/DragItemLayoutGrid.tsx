@@ -1,53 +1,68 @@
 import React, { useState } from "react";
 import { Col, Row } from "antd";
-import {
-  DropZoneType,
-  ElementDragBaseType,
-} from "~/containers/CMS/pages/PageBuilder/types";
+import { ElementDragLayoutType } from "~/containers/CMS/pages/PageBuilder/types";
 import DraggableElement from "~/containers/CMS/pages/PageBuilder/components/DraggableElement";
-import { v4 as uuidv4 } from "uuid";
 import Dropzone from "./Dropzone/index";
 
-interface Props extends ElementDragBaseType {
-  dropZoneProp: DropZoneType;
-}
+interface Props extends ElementDragLayoutType {}
 
 const COL_NUM = 2;
 
 const DragItemLayoutGrid = React.memo((props: Props) => {
   const [text] = useState<string>("Grid");
+  const [colNum] = useState<number>(COL_NUM);
 
   const {
     showBasicContent,
-    showPreview,
+    showPreview = false,
     id: idProp,
     dropZoneProp,
     name,
+    childNode,
+    initialElements = [],
     ...rest
   } = props;
-  const id = React.useMemo(() => {
-    return idProp ?? uuidv4();
-  }, []);
+
+  const filterInitialElements = React.useCallback(
+    (dID: string) => {
+      return initialElements.filter((e) => e.dropzoneID === dID) || [];
+    },
+    [initialElements]
+  );
 
   const dropZonesCells = React.useCallback(() => {
-    return Array.from(Array(COL_NUM)).map((col, index) => {
-      const key = `${id}|${index + 1}`;
+    return Array.from(Array(colNum)).map((col, index) => {
+      const key = `${idProp}|${index + 1}`;
       return (
         <Col key={key} span={12}>
-          <Dropzone {...dropZoneProp} id={`dropZone-${key}`} />
+          {showPreview ? (
+            childNode && childNode[key]?.map((e) => e)
+          ) : (
+            <Dropzone
+              {...dropZoneProp}
+              id={key}
+              parentID={idProp}
+              initialElements={filterInitialElements(key)}
+            />
+          )}
         </Col>
       );
     });
-  }, [id]);
+  }, [idProp, showPreview, childNode, dropZoneProp, colNum]);
+
+  if (showPreview) {
+    // content to be shown in preview mode - end result
+    return <Row gutter={12}>{dropZonesCells()}</Row>;
+  }
 
   return (
-    <DraggableElement {...props} id={id}>
+    <DraggableElement {...rest} id={idProp}>
       {showBasicContent ? (
         <span>{name}</span>
       ) : (
         <>
-          <span>
-            {text} <small>- {id}</small>
+          <span className="text-id">
+            {text} <small>- {idProp}</small>
           </span>
           <Row gutter={12}>{dropZonesCells()}</Row>
         </>

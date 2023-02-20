@@ -2,8 +2,9 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { v4 as uuidv4 } from "uuid";
-import state from "../../core/state";
+import StateCore from "../../core/StateCore";
 import core from "../../core/DragCore";
+import { EnumElementType } from "~/containers/CMS/pages/PageBuilder/types";
 
 class Dropzone extends Component {
   constructor(props) {
@@ -203,7 +204,7 @@ class Dropzone extends Component {
   _updateState = (cb = () => {}, dispatchElementRemove) => {
     const { id: dropzoneID, parentID } = this.props;
 
-    state.updateState(
+    StateCore.updateState(
       dropzoneID,
       parentID,
       this.state.droppedElements,
@@ -350,7 +351,7 @@ class Dropzone extends Component {
 
     let initialElementsToBind = null;
     if (updatedData.dropzoneID && updatedData.parentID) {
-      const oldCopy = state.traverseAndReturnElement(
+      const oldCopy = StateCore.traverseAndReturnElement(
         updatedData.id,
         updatedData.dropzoneID,
         updatedData.parentID
@@ -419,7 +420,6 @@ class Dropzone extends Component {
         ) {
           draggedElement.checkAndRemoveElement();
         }
-
         // update the application state
         this._updateState();
       }
@@ -452,9 +452,8 @@ class Dropzone extends Component {
 
   render() {
     const { droppedElements } = this.state;
-    const { capacity, id, placeholder } = this.props;
+    const { capacity, id, placeholder, showId } = this.props;
     const spaceAvailable = capacity ? capacity > droppedElements.length : true;
-
     return (
       <div
         ref={this.canvasRef}
@@ -483,15 +482,18 @@ class Dropzone extends Component {
         {!droppedElements.length ? (
           <p className="dropzone-placeholder">{placeholder}</p>
         ) : null}
-        <small
-          style={{
-            position: "absolute",
-            top: 2,
-            left: 5,
-          }}
-        >
-          dropzoneId - {id}
-        </small>
+        {showId && (
+          <small
+            style={{
+              position: "absolute",
+              top: 2,
+              left: 5,
+            }}
+            className="text-id"
+          >
+            dropzoneId - {id}
+          </small>
+        )}
       </div>
     );
   }
@@ -503,6 +505,7 @@ Dropzone.propTypes = {
   onDrop: PropTypes.func,
   onElementMove: PropTypes.func,
   allowHorizontal: PropTypes.bool,
+  showId: PropTypes.bool,
   initialElements: PropTypes.arrayOf(Object),
   parentID: PropTypes.string.isRequired,
   placeholder: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
@@ -511,6 +514,7 @@ Dropzone.propTypes = {
 Dropzone.defaultProps = {
   initialElements: [],
   placeholder: "Drop Here",
+  showId: false,
   onElementMove: () => true,
 };
 

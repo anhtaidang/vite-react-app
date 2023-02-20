@@ -14,10 +14,10 @@ const DraggableTextbox = React.memo((props: Props) => {
     // preview version - content to be shown in preview mode - end result, no need of `Draggable`
     return <span>{text}</span>;
   }
-
-  const id = React.useMemo(() => {
-    return idProp ?? uuidv4();
-  }, [idProp]);
+  //
+  // const id = React.useMemo(() => {
+  //   return idProp ?? uuidv4();
+  // }, [idProp]);
 
   // `showBasicContent` is default prop passed by `Palette` component
   // palette version - content to be shown in palette list
@@ -29,7 +29,7 @@ const DraggableTextbox = React.memo((props: Props) => {
             name
           ) : (
             <>
-              {text} <small>- {id}</small>
+              {text} <small>- {idProp}</small>
             </>
           )}
         </span>

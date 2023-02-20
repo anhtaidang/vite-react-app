@@ -59,6 +59,7 @@ module.exports = {
     "@typescript-eslint/no-empty-interface": "off",
     "@typescript-eslint/no-explicit-any": "off",
     "@typescript-eslint/ban-ts-comment": "off",
+    "@typescript-eslint/default-param-last": "off",
 
     // React
     "react/display-name": 0,

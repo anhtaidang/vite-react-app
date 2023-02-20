@@ -43,8 +43,12 @@ const Palette = ({ elements }: Props) => {
   return (
     <div className="palette">
       {isReady &&
-        elements.map((item) =>
-          renderElement({ ...item, key: item.id, showBasicContent: true })
+        elements.map((item, index) =>
+          renderElement({
+            ...item,
+            key: `palette-${index}`,
+            showBasicContent: true,
+          })
         )}
     </div>
   );
