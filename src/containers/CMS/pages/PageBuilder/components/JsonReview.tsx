@@ -8,15 +8,16 @@ const JsonReview = () => {
   const [currentState, setCurrentState] = React.useState<ElementStateType[]>();
 
   React.useEffect(() => {
-    const newSate = StateCore.getState() as any;
-    if (newSate.length > 0) {
-      setCurrentState(newSate[0].fields);
+    const newState = StateCore.getStorableState();
+    if (newState && newState.length > 0) {
+      setCurrentState(newState);
     }
   }, []);
 
-  const onStateChange = (newState: ElementStateType[]) => {
-    if (newState && newState?.length) {
-      setCurrentState(newState?.length > 0 ? newState[0].fields : undefined);
+  const onStateChange = () => {
+    const newState = StateCore.getStorableState();
+    if (newState && newState?.length > 0) {
+      setCurrentState(newState);
     }
   };
 
@@ -27,6 +28,6 @@ const JsonReview = () => {
     };
   }, []);
 
-  return <ReactJson src={currentState ?? {}} collapsed theme="solarized" />;
+  return <ReactJson src={currentState ?? {}} collapsed={2} theme="solarized" />;
 };
 export default JsonReview;

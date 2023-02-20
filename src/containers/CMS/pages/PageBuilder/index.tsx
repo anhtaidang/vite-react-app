@@ -33,22 +33,23 @@ const PageBuilder = () => {
               <Breadcrumb.Item>Application</Breadcrumb.Item>
             </Breadcrumb>
             Search List (Application) Page
-          </Content>
-        </Col>
-      </Row>
-      <Row>
-        <Col span={24}>
-          <Content
-            style={{
-              padding: 24,
-              minHeight: MIN_HEIGHT,
-              background: colorBgContainer,
-            }}
-          >
             <PageConfigurator colorBgContainer={colorBgContainer} />
           </Content>
         </Col>
       </Row>
+      {/*<Row>*/}
+      {/*  <Col span={24}>*/}
+      {/*    <Content*/}
+      {/*      style={{*/}
+      {/*        padding: 24,*/}
+      {/*        minHeight: MIN_HEIGHT,*/}
+      {/*        background: colorBgContainer,*/}
+      {/*      }}*/}
+      {/*    >*/}
+      {/*      <PageConfigurator colorBgContainer={colorBgContainer} />*/}
+      {/*    </Content>*/}
+      {/*  </Col>*/}
+      {/*</Row>*/}
     </>
   );
 };

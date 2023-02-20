@@ -3,8 +3,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { v4 as uuidv4 } from "uuid";
 import StateCore from "../../core/StateCore";
-import core from "../../core/DragCore";
-import { EnumElementType } from "~/containers/CMS/pages/PageBuilder/types";
+import DragCore from "../../core/DragCore";
 
 class Dropzone extends Component {
   constructor(props) {
@@ -236,10 +235,10 @@ class Dropzone extends Component {
    * once both condition matched remove the element from current canvas
    */
   _checkAndRemoveElement = () => {
-    const elementMoved = core.getDraggedElement();
+    const elementMoved = DragCore.getDraggedElement();
     const { removeElement, elementID } = elementMoved;
     const status = this.props.onElementMove(elementMoved);
-    const attemptToMove = !core.getAttemptToRemove();
+    const attemptToMove = !DragCore.getAttemptToRemove();
 
     if (status && attemptToMove) {
       removeElement(elementID);
@@ -260,7 +259,7 @@ class Dropzone extends Component {
    */
   _onDragLeave = (e) => {
     this._manageInsideClass(e, "remove");
-    core.setAttemptToRemove(true);
+    DragCore.setAttemptToRemove(true);
   };
 
   /**
@@ -269,7 +268,7 @@ class Dropzone extends Component {
    */
   _onDragEnter = (e) => {
     this._manageInsideClass(e, "add");
-    core.setAttemptToRemove(false);
+    DragCore.setAttemptToRemove(false);
   };
 
   /**
@@ -283,7 +282,7 @@ class Dropzone extends Component {
     e.preventDefault();
     e.stopPropagation();
     const { droppedElements } = this.state;
-    core.setAttemptToRemove(false);
+    DragCore.setAttemptToRemove(false);
     this._manageInsideClass(e, "remove");
 
     const { onDrop } = this.props;
@@ -297,7 +296,9 @@ class Dropzone extends Component {
 
     return onDrop
       ? onDrop(data, this._addElement, {
-          dropIndex: !droppedElements.length ? core.getDropPostion() + 1 : 0,
+          dropIndex: !droppedElements.length
+            ? DragCore.getDropPostion() + 1
+            : 0,
           currentElements: droppedElements,
         })
       : this._addElement(data);
@@ -315,8 +316,8 @@ class Dropzone extends Component {
    */
   _addElement = (updatedData) => {
     const { id: dropzoneID, capacity, parentID, allowHorizontal } = this.props;
-    const dropPosition = core.getDropPostion();
-    const draggedElement = core.getDraggedElement();
+    const dropPosition = DragCore.getDropPostion();
+    const draggedElement = DragCore.getDraggedElement();
     const invalidUpdatedData = !updatedData || !updatedData.id;
     let indexOfPresentElement = -1;
     const keyAlreadyPresent =
@@ -337,7 +338,7 @@ class Dropzone extends Component {
     // check fo unique key
     if (invalidUpdatedData || keyAlreadyPresent) {
       if (isSameIndex) {
-        return core.error("Duplicate or invalid ID");
+        return DragCore.error("Duplicate or invalid ID");
       }
 
       elementAlreadyRemoved = true;
@@ -401,7 +402,7 @@ class Dropzone extends Component {
 
     // check new list against max-capacity
     if (capacity && newElements.length > capacity) {
-      return core.error(
+      return DragCore.error(
         `Maximum capacity of canvas(${dropzoneID}) is ${capacity}`
       );
     }
@@ -444,9 +445,9 @@ class Dropzone extends Component {
    * @returns JSX
    */
   _renderDragItem = (props) => {
-    const element = core
-      .getRegisteredPaletteElements()
-      .find((e) => e.type === props.type);
+    const element = DragCore.getRegisteredPaletteElements().find(
+      (e) => e.type === props.type
+    );
     return element ? <element.component {...props} /> : null;
   };
 
