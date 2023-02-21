@@ -31,8 +31,10 @@
   padding: 20px 10px 10px;
   position: relative;
   box-sizing: border-box;
-  background: #f0faff;
-  border: 1px solid #0277bd;
+  //background: #f0faff;
+  background-color: #ececec;
+  border: 1px solid #ececec;
+  //border: 1px solid #0277bd;
 }
 
 .dropzone.empty {
@@ -46,7 +48,7 @@
   border: 1px solid #01579b;
   display: flex;
   justify-content: flex-start;
-  align-items: baseline;
+  align-items: flex-end;
   .drag-item {
     width: 100px;
     height: 80px;
@@ -62,8 +64,20 @@
   padding: 10px;
   color: #01579b;
   box-sizing: border-box;
-  background-color: #b3e5fc;
-  border: 1px solid #01579b;
+  //background-color: #b3e5fc;
+  background-color: #ffff;
+  //border: 1px solid #01579b;
+  border: 1px solid #ececec;
+  &.basic {
+    //border: 1px solid #01579b;
+    background: #bdbdbd;
+    color: #252525;
+    font-size: 14px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 }
 
 .inline.drag-item {
@@ -111,7 +125,7 @@
 }
 
 .drag-item.after::after {
-  content: '';
+  content: "";
   position: absolute;
   width: 50%;
   height: 1px;
@@ -126,7 +140,7 @@
 }
 
 .drag-item.before::before {
-  content: '';
+  content: "";
   position: absolute;
   width: 50%;
   height: 1px;

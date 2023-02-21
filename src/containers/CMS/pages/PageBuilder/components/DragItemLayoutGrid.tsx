@@ -20,7 +20,6 @@ const DragItemLayoutGrid = React.memo((props: Props) => {
     name,
     childNode,
     initialElements = [],
-    ...rest
   } = props;
 
   const filterInitialElements = React.useCallback(
@@ -56,7 +55,7 @@ const DragItemLayoutGrid = React.memo((props: Props) => {
   }
 
   return (
-    <DraggableElement {...rest} id={idProp}>
+    <DraggableElement {...props} id={idProp}>
       {showBasicContent ? (
         <span>{name}</span>
       ) : (

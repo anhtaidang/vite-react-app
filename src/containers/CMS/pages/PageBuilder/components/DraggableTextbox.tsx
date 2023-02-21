@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { v4 as uuidv4 } from "uuid";
 import { ElementDragBaseType } from "~/containers/CMS/pages/PageBuilder/types";
 import DraggableElement from "../components/DraggableElement";
 
@@ -14,13 +13,7 @@ const DraggableTextbox = React.memo((props: Props) => {
     // preview version - content to be shown in preview mode - end result, no need of `Draggable`
     return <span>{text}</span>;
   }
-  //
-  // const id = React.useMemo(() => {
-  //   return idProp ?? uuidv4();
-  // }, [idProp]);
 
-  // `showBasicContent` is default prop passed by `Palette` component
-  // palette version - content to be shown in palette list
   return (
     <>
       <DraggableElement {...props} id={idProp}>

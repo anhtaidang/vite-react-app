@@ -1,7 +1,8 @@
 import React, { ReactElement, useRef } from "react";
+import { ElementDragBaseType } from "~/containers/CMS/pages/PageBuilder/types";
 import DragCore from "../core/DragCore";
 
-interface Props {
+interface Props extends Pick<ElementDragBaseType, "showBasicContent"> {
   id: string | null;
   name?: string | JSX.Element;
   initDone?: boolean;
@@ -39,6 +40,7 @@ const DraggableElement = React.memo((props: Props) => {
     draggable = true,
     elementProps,
     children,
+    showBasicContent = false,
   } = props;
 
   const dragElemRef = useRef<HTMLDivElement>(null);
@@ -95,47 +97,53 @@ const DraggableElement = React.memo((props: Props) => {
    * first fine mid of element upon which user is dragging over and
    * based on that decide whether user trying to drop an element above or below
    */
-  const handleDragOver = (e: React.DragEvent<HTMLDivElement>) => {
-    const elemCord = dragElemRef?.current?.getBoundingClientRect();
-    if (!elemCord || !dragElemRef.current || !spaceAvailable) {
-      return false;
-    }
+  const handleDragOver = React.useCallback(
+    (e: React.DragEvent<HTMLDivElement>) => {
+      const elemCord = dragElemRef?.current?.getBoundingClientRect();
+      if (!elemCord || !dragElemRef.current || !spaceAvailable) {
+        return false;
+      }
 
-    if (allowHorizontal) {
-      const dragElemX = e.clientX;
-      if (dragElemX >= elemCord.x && dragElemX <= elemCord.x + elemCord.width) {
-        const midX = elemCord.x + elemCord.width / 2;
-        if (dragElemX < midX) {
-          dragElemRef.current.classList.remove("after");
-          dragElemRef.current.classList.add("before");
-          DragCore.setDropPostion(index);
-        } else {
-          dragElemRef.current.classList.remove("before");
-          dragElemRef.current.classList.add("after");
-          DragCore.setDropPostion(index + 1);
+      if (allowHorizontal) {
+        const dragElemX = e.clientX;
+        if (
+          dragElemX >= elemCord.x &&
+          dragElemX <= elemCord.x + elemCord.width
+        ) {
+          const midX = elemCord.x + elemCord.width / 2;
+          if (dragElemX < midX) {
+            dragElemRef.current.classList.remove("after");
+            dragElemRef.current.classList.add("before");
+            DragCore.setDropPostion(index);
+          } else {
+            dragElemRef.current.classList.remove("before");
+            dragElemRef.current.classList.add("after");
+            DragCore.setDropPostion(index + 1);
+          }
+        }
+      } else {
+        const dragElemY = e.clientY;
+        if (
+          dragElemY >= elemCord.y &&
+          dragElemY <= elemCord.y + elemCord.height
+        ) {
+          const midY = elemCord.y + elemCord.height / 2;
+          if (dragElemY < midY) {
+            dragElemRef.current.classList.remove("after");
+            dragElemRef.current.classList.add("before");
+            DragCore.setDropPostion(index);
+          } else {
+            dragElemRef.current.classList.remove("before");
+            dragElemRef.current.classList.add("after");
+            DragCore.setDropPostion(index + 1);
+          }
         }
       }
-    } else {
-      const dragElemY = e.clientY;
-      if (
-        dragElemY >= elemCord.y &&
-        dragElemY <= elemCord.y + elemCord.height
-      ) {
-        const midY = elemCord.y + elemCord.height / 2;
-        if (dragElemY < midY) {
-          dragElemRef.current.classList.remove("after");
-          dragElemRef.current.classList.add("before");
-          DragCore.setDropPostion(index);
-        } else {
-          dragElemRef.current.classList.remove("before");
-          dragElemRef.current.classList.add("after");
-          DragCore.setDropPostion(index + 1);
-        }
-      }
-    }
 
-    return true;
-  };
+      return true;
+    },
+    [spaceAvailable, allowHorizontal]
+  );
 
   const handleDragLeave = () => {
     // remove before/after class from dragged element
@@ -155,7 +163,9 @@ const DraggableElement = React.memo((props: Props) => {
 
   return (
     <div
-      className={`drag-item ${allowHorizontal ? "inline" : ""}`}
+      className={`drag-item ${allowHorizontal ? "inline" : ""} ${
+        showBasicContent && "basic"
+      }`}
       ref={dragElemRef}
       onDragStart={onDragStart}
       onDragEnd={onDragEnd}

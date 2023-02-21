@@ -1,10 +1,12 @@
 import React from "react";
+import { Button, Col, Row } from "antd";
 import {
   ElementSchemaType,
   EnumElementType,
 } from "~/containers/CMS/pages/PageBuilder/types";
 import DraggableTextbox from "~/containers/CMS/pages/PageBuilder/components/DraggableTextbox";
 import DragItemLayoutGrid from "~/containers/CMS/pages/PageBuilder/components/DragItemLayoutGrid";
+import StateCore from "~/containers/CMS/pages/PageBuilder/core/StateCore";
 import DragCore from "../core/DragCore";
 
 interface Props {
@@ -40,17 +42,32 @@ const Palette = ({ elements }: Props) => {
       <element.component {...newProps} showBasicContent />
     ) : null;
   };
+
+  const clearStorage = () => {
+    StateCore.clearState();
+  };
+
   return (
-    <div className="palette">
-      {isReady &&
-        elements.map((item, index) =>
-          renderElement({
-            ...item,
-            key: `palette-${index}`,
-            showBasicContent: true,
-          })
-        )}
-    </div>
+    <Row>
+      <Col span={24} style={{ marginBottom: 10 }}>
+        <Button danger type="primary" onClick={clearStorage}>
+          Clear Storage
+        </Button>
+      </Col>
+      {isReady && (
+        <Col span={24}>
+          <div className="palette">
+            {elements.map((item, index) =>
+              renderElement({
+                ...item,
+                key: `palette-${index}`,
+                showBasicContent: true,
+              })
+            )}
+          </div>
+        </Col>
+      )}
+    </Row>
   );
 };
 

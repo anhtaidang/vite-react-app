@@ -1,6 +1,7 @@
 /* eslint-disable */
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import { Col, Row } from "antd";
 import { v4 as uuidv4 } from "uuid";
 import StateCore from "../../core/StateCore";
 import DragCore from "../../core/DragCore";
@@ -467,22 +468,28 @@ class Dropzone extends Component {
         onDrop={this._onDrop}
         onDragEnd={this._onDragEnd}
       >
-        {droppedElements.map((e, i) =>
-          this._renderDragItem({
-            ...e,
-            index: i,
-            spaceAvailable,
-            initDone: this.state.initDone,
-            dropzoneProps: {
-              initDone: this.state.initDone,
-              parentID: e.id,
-            },
-          })
-        )}
+        <Row>
+          <Col span={24}>
+            {droppedElements.map((e, i) =>
+              this._renderDragItem({
+                ...e,
+                index: i,
+                spaceAvailable,
+                initDone: this.state.initDone,
+                dropzoneProps: {
+                  initDone: this.state.initDone,
+                  parentID: e.id,
+                },
+              })
+            )}
+          </Col>
+          <Col span={24}>
+            {!droppedElements.length ? (
+              <p className="dropzone-placeholder">{placeholder}</p>
+            ) : null}
+          </Col>
+        </Row>
 
-        {!droppedElements.length ? (
-          <p className="dropzone-placeholder">{placeholder}</p>
-        ) : null}
         {showId && (
           <small
             style={{
