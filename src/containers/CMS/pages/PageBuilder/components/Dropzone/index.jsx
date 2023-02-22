@@ -203,7 +203,6 @@ class Dropzone extends Component {
    */
   _updateState = (cb = () => {}, dispatchElementRemove) => {
     const { id: dropzoneID, parentID } = this.props;
-
     StateCore.updateState(
       dropzoneID,
       parentID,

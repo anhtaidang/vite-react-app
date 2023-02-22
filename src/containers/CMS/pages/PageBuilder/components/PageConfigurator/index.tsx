@@ -18,11 +18,14 @@ const paletteElements = [
     type: EnumElementType.TEXTBOX,
   },
   {
-    // <-- palette elements to be shown
-    // id: "g1", // make sure ID is unique
     id: null,
     name: "Grid [1 Row - 2 Col]",
     type: EnumElementType.LAYOUT_GRID_1_2,
+  },
+  {
+    id: null,
+    name: "Section",
+    type: EnumElementType.LAYOUT_SECTION,
   },
 ];
 

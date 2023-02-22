@@ -4,6 +4,7 @@ export enum EnumElementType {
   ROOT = "ROOT",
   TEXTBOX = "TEXTBOX",
   LAYOUT_GRID_1_2 = "LAYOUT_GRID_1_2",
+  LAYOUT_SECTION = "LAYOUT_SECTION",
 }
 
 export interface ElementStateType {

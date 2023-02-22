@@ -60,6 +60,7 @@ module.exports = {
     "@typescript-eslint/no-explicit-any": "off",
     "@typescript-eslint/ban-ts-comment": "off",
     "@typescript-eslint/default-param-last": "off",
+    "@typescript-eslint/dot-notation": "off",
 
     // React
     "react/display-name": 0,

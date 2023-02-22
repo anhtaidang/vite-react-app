@@ -1,0 +1,6 @@
+@use "mixins" as minxinsCore;
+
+@include minxinsCore.rounded-bind(rounded);
+@include minxinsCore.color-bind(color, red yellow green silver black blue white purple);
+@include minxinsCore.background-bind(bg, red yellow green silver black blue white purple);
+@include minxinsCore.padding-margin-bind();

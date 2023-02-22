@@ -62,7 +62,8 @@
 
 .drag-item {
   padding: 10px;
-  color: #01579b;
+  //color: #01579b;
+  color: #5a5a5a;
   box-sizing: border-box;
   //background-color: #b3e5fc;
   background-color: #ffff;
@@ -70,6 +71,8 @@
   border: 1px solid #ececec;
   &.basic {
     //border: 1px solid #01579b;
+    width: auto;
+    height: auto;
     background: #bdbdbd;
     color: #252525;
     font-size: 14px;

@@ -7,25 +7,31 @@ import {
 import DraggableTextbox from "~/containers/CMS/pages/PageBuilder/components/DraggableTextbox";
 import DragItemLayoutGrid from "~/containers/CMS/pages/PageBuilder/components/DragItemLayoutGrid";
 import StateCore from "~/containers/CMS/pages/PageBuilder/core/StateCore";
+import DragItemLayoutSection from "~/containers/CMS/pages/PageBuilder/components/DragItemLayoutSection";
 import DragCore from "../core/DragCore";
 
 interface Props {
   elements: ElementSchemaType[];
 }
+const registerElements = [
+  {
+    type: EnumElementType.TEXTBOX, // import from const.js
+    component: DraggableTextbox, // import from DraggableTextbox.js
+  },
+  {
+    type: EnumElementType.LAYOUT_GRID_1_2, // import from const.js
+    component: DragItemLayoutGrid, // import from DragItemLayoutGrid.js
+  },
+  {
+    type: EnumElementType.LAYOUT_SECTION, // import from const.js
+    component: DragItemLayoutSection, // import from DragItemLayoutGrid.js
+  },
+];
 
 const Palette = ({ elements }: Props) => {
   const [isReady, setIsReady] = React.useState<boolean>(false);
   React.useEffect(() => {
-    DragCore.registerPaletteElements([
-      {
-        type: EnumElementType.TEXTBOX, // import from const.js
-        component: DraggableTextbox, // import from DraggableTextbox.js
-      },
-      {
-        type: EnumElementType.LAYOUT_GRID_1_2, // import from const.js
-        component: DragItemLayoutGrid, // import from DragItemLayoutGrid.js
-      },
-    ]);
+    DragCore.registerPaletteElements(registerElements);
     setIsReady(true);
   }, []);
 
