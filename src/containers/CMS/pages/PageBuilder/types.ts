@@ -36,7 +36,7 @@ export interface ElementStateCoreType {
   checkAndRemoveElement?: VoidFunction;
 }
 
-export interface ElementDragBaseType {
+export interface ElementDragBaseType extends Partial<ElementStateCoreType> {
   id: string;
   name: string;
   showBasicContent?: boolean;

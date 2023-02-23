@@ -16,6 +16,15 @@ const DEFAULT_TREE = [
   },
 ] as ElementStateCoreType[];
 
+const shareableElementProps = [
+  "id",
+  "type",
+  "name",
+  "payload",
+  "dropzoneID",
+  "parentID",
+];
+
 class StateCore {
   private state: { tree: ElementStateCoreType[] };
 
@@ -53,14 +62,6 @@ class StateCore {
       // set base
       tree: DEFAULT_TREE,
     };
-    const shareableElementProps = [
-      "id",
-      "type",
-      "name",
-      "payload",
-      "dropzoneID",
-      "parentID",
-    ];
 
     /**
      * private function to traverse through each node and update the corresponding node
